@@ -3,8 +3,8 @@ pipeline {
 
     environment {
             DOCKER_CREDENTIALS = credentials("docker-secret")
-            IMAGE_NAME = 'bpanigrahics/webapp-spring-boot'
-            IMAGE_NAME_TEST = "bpanigrahics/webapp-spring-boot:${BUILD_TIMESTAMP}"
+            IMAGE_NAME = 'samyak1326/webapp-spring-boot'
+            IMAGE_NAME_TEST = "samyak1326/webapp-spring-boot:${BUILD_TIMESTAMP}"
             BUILD_TIMESTAMP_DEPLOYMENT = "${BUILD_TIMESTAMP}"
     }
 
@@ -20,10 +20,10 @@ pipeline {
                     sh 'echo ${IMAGE_NAME_TEST}'
                     sh 'echo ${BUILD_TIMESTAMP_DEPLOYMENT}'
 
-                    sh 'docker login -u bpanigrahics -p ${DOCKER_CREDENTIALS}'
-                    sh 'docker build -t bpanigrahics/webapp-spring-boot:${BUILD_TIMESTAMP} .'
-                    sh 'docker push bpanigrahics/webapp-spring-boot:${BUILD_TIMESTAMP}'
-                    sh 'docker image rm bpanigrahics/webapp-spring-boot:${BUILD_TIMESTAMP} -f'
+                    sh 'docker login -u samyak1326 -p ${DOCKER_CREDENTIALS}'
+                    sh 'docker build -t samyak1326/webapp-spring-boot:${BUILD_TIMESTAMP} .'
+                    sh 'docker push samyak1326/webapp-spring-boot:${BUILD_TIMESTAMP}'
+                    sh 'docker image rm samyak1326/webapp-spring-boot:${BUILD_TIMESTAMP} -f'
 
                     sh 'kubectl apply -f service.yaml'
                     sh 'envsubst < deployment.yaml > deployment_resolved.yaml'
