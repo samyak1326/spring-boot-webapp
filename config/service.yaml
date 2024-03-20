@@ -10,4 +10,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
-      nodePort: 30000  # You can specify the desired nodePort or let Kubernetes allocate one
+      nodePort: 30000
